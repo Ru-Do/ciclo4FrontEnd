@@ -1,0 +1,24 @@
+.empresas{
+    margin: 0 auto;
+    margin-top: 70px;
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  hr {
+    height:2px;
+    background-color:green;
+  }
+
+  .btn-empresa {
+    background-color: #009000;
+    color: white;
+  }
+   
+.btn-empresa:hover {
+  opacity: 1;
+  background-color: #009000;
+  color: white;
+}

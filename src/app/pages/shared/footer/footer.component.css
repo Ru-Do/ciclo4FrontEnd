@@ -1,0 +1,55 @@
+footer {
+    background-color: #151515;
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    /* height: 40%; */
+    /* text-size-adjust: 100%; */
+}
+
+.title{
+  color: #7EF785;
+}
+
+a{
+  text-decoration: none;
+  transition: all ease .5s;
+}
+
+a:hover{
+  color: #7EF785;
+}
+
+a::before{
+  content: '‣ ';
+}
+
+h5 {
+    color: #7EF785;
+    font-size:x-large;
+}
+h6 {
+    color: white;
+    font-size:large;
+}
+/* .titulo{
+    color: #7EF785;
+    font-size:xx-large;
+    font-style: italic;
+} */
+.mb-1{
+  color: #fff;
+  font-weight: 300;
+}
+.mb-2{
+    color: white;
+    font-size:large;
+}
+
+.footer-link{
+    color:white;
+}
+
+.about-us{
+  text-align: justify;
+}

@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+
+}
+
+img{
+  width: 100%;
+}
+
+.login.card {
+  width: 370px;
+  height: 550px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  margin: 0 auto 90px;
+  /*para centrar */
+  border-radius: 5px;
+  margin-top: 40px;
+  /*con este baja el card*/
+  border-top: 5px solid green;
+  /*Color del borde superio*/
+}
+
+h1 {
+  height: 10px;
+  text-align: center;
+  margin-top: 1px;
+  margin-bottom: 40px;
+  /*la marge inferior*/
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 20px;
+}
+
+.campos {
+  display: block;
+  width: 100%;
+  border-radius: 0.6rem;
+  padding: 5px 10px;
+  border: 1px solid green;
+  /* cursor: pointer; */
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: lighter;
+  /*Con este colocamos negrilla a la letras*/
+}
+
+.campos:focus {
+  border-color: rgb(104, 145, 162);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+}
+
+.btn-Button {
+  width: 100%;
+  height: 30px;
+  text-align: auto;
+  background-color: #008000;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.btn-Button:hover {
+  opacity: 1;
+  background-color: #009000;
+  color: white;
+}
+
+.btn-Button:active, .btn-Button:focus {
+  background-color: blue;
+}
+
+.profile {
+  /* width: 96px; */
+  /* height: 96px; */
+  margin: 0 auto 10px;
+  /* border-radius: 50%; */
+}
+
+.link-pass-forgotten{
+  color: #008000;
+}
+
+.link-pass-forgotten small{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width:550px) {
+  .login.card{
+    width: 80%;
+
+  }
+}

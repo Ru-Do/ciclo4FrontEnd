@@ -1,0 +1,238 @@
+<div class="container my-5">
+  <form [formGroup]= "profileForm">
+  <h2>Perfil de usuario</h2>
+  <hr>
+  <form class="row g-3">
+    <div class="col-md-3">
+      <label for="primerNombre" class="form-label">Primer nombre</label>
+      <input type="primerNombre" class="form-control" id="primerNombre" formControlName="primerNombre" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.primerNombre.touched && profileForm.controls.primerNombre.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.primerNombre.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.primerNombre.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 3 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.primerNombre.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo letras en este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="segundoNombre" class="form-label">Segundo nombre</label>
+      <input type="segundoNombre" class="form-control" id="inputPassword4" formControlName="segundoNombre" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.segundoNombre.touched && profileForm.controls.segundoNombre.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.segundoNombre.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.segundoNombre.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 3 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.segundoNombre.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo letras en este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="primerApellido" class="form-label">Primer apellido</label>
+      <input type="primerApellido" class="form-control" id="primerApellido" formControlName="primerApellido" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.primerApellido.touched && profileForm.controls.primerApellido.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.primerApellido.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.primerApellido.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 3 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.primerApellido.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo letras en este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="segundoApellido" class="form-label">Segundo apellido</label>
+      <input type="segundoApellido" class="form-control" id="segundoApellido" formControlName="segundoApellido" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.segundoApellido.touched && profileForm.controls.segundoApellido.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.segundoApellido.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.segundoApellido.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 3 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.segundoApellido.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo letras en este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <label for="tipoDocumento" class="form-label">Tipo de documento</label>
+      <select id="tipoDocumento" class="form-select" formControlName="tipoDocumento">
+        <option value= ""   >Selecciona...</option>
+        <option >CC</option>
+        <option>CE</option>
+        <option>NIT</option>
+      </select>
+      <div *ngIf="profileForm.controls.tipoDocumento.touched && profileForm.controls.tipoDocumento.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.tipoDocumento.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="numeroDocumento" class="form-label">Numero de documento o NIT</label>
+      <input type="numeroDocumento" class="form-control" id="numeroDocumento" formControlName="numeroDocumento" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.numeroDocumento.touched && profileForm.controls.numeroDocumento.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.numeroDocumento.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroDocumento.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 6 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroDocumento.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo números en este campo
+        </small>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="email" class="form-label">Correo electronico</label>
+      <input type="email" class="form-control" id="email" placeholder="usario@gmail.com" formControlName="email" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.email.touched && profileForm.controls.email.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.email.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.email.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Correo inválido
+        </small>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <label for="numeroTelefono1" class="form-label">Numero de telefono</label>
+      <input type="numeroTelefono1" class="form-control" id="numeroTelefono1" formControlName="numeroTelefono1" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.numeroTelefono1.touched && profileForm.controls.numeroTelefono1.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono1.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono1.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 6 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono1.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo números en este campo
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="numeroTelefono2" class="form-label">Numero de telefono2</label>
+      <input type="telefono2" class="form-control" id="numeroTelefono2" formControlName="numeroTelefono2" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.numeroTelefono2.touched && profileForm.controls.numeroTelefono2.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono2.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono2.errors?.minlength">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          La longitud mínima es de 6 caracteres
+        </small>
+        <small class="text-danger" *ngIf="profileForm.controls.numeroTelefono2.errors?.pattern">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Introducir solo números en este campo
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="tipoUsuario" class="form-label">Tipo de Usuario</label>
+      <select id="tipoUsuario" class="form-select" formControlName="tipoUsuario">
+        <option  value= ""  >Selecciona...</option>
+        <option>Empresa</option>
+        <option>Fundación</option>
+        <option>Voluntario</option>
+      </select>
+      <div *ngIf="profileForm.controls.tipoUsuario.touched && profileForm.controls.tipoUsuario.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.tipoUsuario.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <label for="Ciudad" class="form-label">Ciudad</label>
+      <select id="Ciudad" class="form-select" formControlName="ciudad" ng-disable="!enableField">
+        <option value= "" >Selecciona...</option>
+        <option>Cali</option>
+        <option>Barranquilla</option>
+        <option>Cartagena</option>
+        <option>Medellín</option>
+        <option>Bogotá</option>
+        <option>Cartagena</option>
+        <option>Cúcuta</option>
+        <option>Bucaramanga</option>
+        <option>Bello</option>
+        <option>Villavicenci</option>
+        <option>Ibagué</option>
+        <option>Valledupar</option>
+        <option>Manizales</option>
+        <option>Ibagué</option>
+        <option>Pereira</option>
+        <option>Montería</option>
+        <option>Pasto</option>
+        <option>Neiva</option>
+        <option>Armenia</option>
+        <option>Santa Marta</option>
+        <option>Cúcuta</option>
+        <option>Cartagena de Indias</option>
+        <option>Soacha</option>
+        <option>Soledad</option>
+        <option>Bello</option>
+      </select>
+      <div *ngIf="profileForm.controls.ciudad.touched && profileForm.controls.ciudad.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.ciudad.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input type="text" class="form-control" id="direccion" formControlName="direccion" [readonly]="!enableField">
+      <div *ngIf="profileForm.controls.direccion.touched && profileForm.controls.direccion.invalid">
+        <small class="text-danger" *ngIf="profileForm.controls.direccion.errors?.required">
+          <i class="fas fa-exclamation-circle fa-fw"></i>
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+
+
+    <div class="col-12 ">
+      <button type="submit" class="btn btn-primary btn-green" (click)='enableFields()'>Editar </button>
+      <button type="button" class="btn btn-primary btn-green btn-center" (click)="pop()">Guardar</button>
+    </div>
+  </form>
+</form>
+</div>

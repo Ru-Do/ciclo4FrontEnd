@@ -1,0 +1,74 @@
+
+<div class="container my-5 empresas border border-success rounded">
+    <form [formGroup]="empresasForm" >
+        <div class="row g-3">
+          <h1>Formulario de Donación de Empresas</h1>
+          <hr>
+            <div class="col-md-7">
+           <label for="sector" class="form-label" >Sector Donacion</label>
+            <select id="sector" class="form-select" formControlName="sector">
+            <option value="" >Selecciona...</option>
+            <option>Alimentos</option>
+            <option>Textiles</option>
+            <option>Calzado</option>
+            <option>Implementos escolares</option>
+            <option>Educación</option>
+            <option>Servicios</option>
+            <option>Salud</option>
+            <option>Consumo masivo</option>
+            <option>Transporte</option>
+            <option>Otros</option>
+          </select>
+          <div *ngIf=" showRequiredPublica || empresasForm.controls.sector.touched && empresasForm.controls.sector.invalid">
+            <small class="text-danger" *ngIf="empresasForm.controls.sector.errors?.required">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Campo requerido
+            </small>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <label for="fecha">fecha de Apertura de la Donación : </label>
+            <input type="date" id="fechaApertura" name="fechaApertura" formControlName="fechaApertura">
+            <div *ngIf="showRequiredPublica || empresasForm.controls.fechaApertura.touched && empresasForm.controls.fechaApertura.invalid">
+                <small class="text-danger" *ngIf="empresasForm.controls.fechaApertura.errors?.required">
+                  <i class="fas fa-exclamation-circle fa-fw"></i>
+                  Campo requerido
+                </small>
+              </div>
+        </div>
+        <div div class="col-md-6">
+          <label for="fecha">Fecha de Cierre de la Donación: </label>
+          <input type="date" id="fechaCierre" name="fechaCierre" formControlName="fechaCierre">
+          <div *ngIf="showRequiredPublica || empresasForm.controls.fechaCierre.touched && empresasForm.controls.fechaCierre.invalid">
+            <small class="text-danger" *ngIf="empresasForm.controls.fechaCierre.errors?.required">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Campo requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <label for="Publica ">Publica tu Donación</label>
+          <textarea class="form-control " id="Publica" formControlName="publica" rows="5"></textarea>
+          <div *ngIf=" showRequiredPublica || empresasForm.controls.publica.touched && empresasForm.controls.publica.invalid">
+            <small class="text-danger" *ngIf="empresasForm.controls.publica.errors?.required">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Campo requerido
+            </small>
+          </div>
+        </div>
+        <div class="col-md-12 pt-3 pb-1 text-center">
+          <button type="submit" class="btn btn-empresa" role="button">PUBLICAR</button>
+          <a class="btn btn-success" routerLink="/filtroPublicaciones">
+            <i class="fas fa-pen-alt fa-fw"></i>
+            Volver
+          </a>
+        </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+

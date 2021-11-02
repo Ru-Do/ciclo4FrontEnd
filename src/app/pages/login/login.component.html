@@ -1,0 +1,43 @@
+<div class="login_container">
+  <form [formGroup]="loginForm">
+    <div class="card login">
+      <img src="assets/img/logotudonacion1.png">
+      <form class="form-login" [formGroup]="loginForm">
+        <h1>Inicio de sesion</h1>
+        <div>
+          <input class=campos formControlName="email" type="email" name="email" placeholder="Enter your email"
+            required="required" />
+          <div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+            <small class="text-danger" *ngIf="loginForm.controls.email.errors?.required">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Campo requerido
+            </small>
+            <small class="text-danger" *ngIf="loginForm.controls.email.errors?.pattern">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Email no es valido
+            </small>
+          </div>
+        </div>
+        <div>
+          <input class=campos formControlName="password" type="password" name="password"
+            placeholder="Enter your Password" required="required" />
+          <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+            <small class="text-danger" *ngIf="loginForm.controls.password.errors?.required">
+              <i class="fas fa-exclamation-circle fa-fw"></i>
+              Campo requerido
+            </small>
+
+          </div>
+        </div>
+        <button class="btn btn-Button" type="submit">
+          Iniciar sesión
+        </button>
+        <p>
+          <a href=forgot-password class="link-pass-forgotten">
+            <small>¿Olvidaste tu contraseña?</small>
+          </a>
+        </p>
+      </form>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+.desaparece{
+  display: none;
+}
+
+.buttonFiltro {
+  /*display: inline-block;*/
+  padding: 5px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: rgba(212, 136, 5, 0.5);
+  color: #fff;
+  background-color:#005e00;
+  border: solid rgba(212, 136, 5, 0.5);
+  border-radius: 0px;
+  box-shadow: 5px 5px rgba(212, 136, 5, 0.1);
+}
+
+.buttonFiltro:hover {background-color: #3e8e41}
+
+.buttonFiltro:active {
+  background-color: blue;
+
+  box-shadow: 5px 5px #d48805;
+  transform: translateY(4px);
+}
+
+input:focus:invalid {
+  box-shadow: none;
+}
