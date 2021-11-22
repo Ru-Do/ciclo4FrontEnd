@@ -34,3 +34,7 @@ input:focus:invalid {
 .btn-registro:active{
     background-color: blue;
 }
+
+.requerido {
+    color: red;
+}

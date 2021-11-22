@@ -2,8 +2,9 @@
   <form [formGroup]="registerForm" (ngSubmit)="agregarUser()">
     <div class="row p-3">
       <h2 class="text-center p-3">Registro</h2>
+      <h6 class="requerido p-3"> * Requerido</h6>
       <div class="col-md-6 pt-4 box" >
-        <label for="inputtipoUsuario" class="form-label">Tipo de Usuario</label>
+        <label for="inputtipoUsuario" class="form-label">Tipo de Usuario<strong class="requerido">*</strong></label>
         <select id="inputtipoUsuario" class="form-select" formControlName="tipoUsuario" (change)='ocultarCampos()'  >
           <option value=""  disabled="disabled" >Selecciona...</option>
           <option >Empresa</option>
@@ -19,7 +20,7 @@
       </div>
 
       <div class="col-md-6 pt-4 box" *ngIf="showEmpresa" >
-        <label for="inputSector" class="form-label">Sector económico</label>
+        <label for="inputSector" class="form-label">Sector económico <strong class="requerido">*</strong></label>
         <select id="inputSector" class="form-select" formControlName="sector">
           <option value="" disabled="disabled">Selecciona...</option>
           <option>Alimentos</option>
@@ -42,7 +43,7 @@
       </div>
 
       <div class="col-md-6 pt-4 box" *ngIf="showEmpresa ">
-        <label for="inputNempresa" class="form-label">Nombre de la organización</label>
+        <label for="inputNempresa" class="form-label">Nombre de la organización<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputNempresa" formControlName="nombreOrganizacion">
         <div *ngIf="registerForm.controls.nombreOrganizacion.touched && registerForm.controls.nombreOrganizacion.invalid">
           <small class="text-danger"*ngIf="registerForm.controls.nombreOrganizacion.errors?.required">
@@ -60,8 +61,8 @@
         </div>
       </div>
 
-      <div class="col-md-6 pt-4">
-        <label for="inputPnombre" class="form-label">Primer nombre</label>
+      <div class="col-md-6 pt-4" *ngIf="showVoluntario">
+        <label for="inputPnombre" class="form-label">Primer nombre<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputPnombre" formControlName="primerNombre">
         <div *ngIf="registerForm.controls.primerNombre.touched && registerForm.controls.primerNombre.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.primerNombre.errors?.required">
@@ -79,7 +80,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 pt-4">
+      <div class="col-md-6 pt-4" *ngIf="showVoluntario">
         <label for="inputSnombre" class="form-label">Segundo nombre</label>
         <input type="text" class="form-control" id="inputSnombre" formControlName="segundoNombre">
         <div *ngIf="registerForm.controls.segundoNombre.touched && registerForm.controls.segundoNombre.invalid">
@@ -98,8 +99,8 @@
         </div>
       </div>
 
-      <div class="col-md-6 pt-4">
-        <label for="inputPapellido" class="form-label">Primer apellido</label>
+      <div class="col-md-6 pt-4" *ngIf="showVoluntario">
+        <label for="inputPapellido" class="form-label">Primer apellido<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputPapellido" formControlName="primerApellido">
         <div *ngIf="registerForm.controls.primerApellido.touched && registerForm.controls.primerApellido.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.primerApellido.errors?.required">
@@ -117,8 +118,8 @@
         </div>
       </div>
 
-      <div class="col-md-6 pt-4">
-        <label for="inputSapellido" class="form-label">Segundo apellido</label>
+      <div class="col-md-6 pt-4" *ngIf="showVoluntario">
+        <label for="inputSapellido" class="form-label">Segundo apellido<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputSapellido" formControlName="segundoApellido">
         <div *ngIf="registerForm.controls.segundoApellido.touched && registerForm.controls.segundoApellido.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.segundoApellido.errors?.required">
@@ -137,7 +138,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputTipoID" class="form-label">Tipo de documento</label>
+        <label for="inputTipoID" class="form-label">Tipo de documento<strong class="requerido">*</strong></label>
         <select id="inputTipoID" class="form-select" formControlName="tipoDocumento">
           <option value="" disabled="disabled">Selecciona...</option>
           <option>CC</option>
@@ -153,7 +154,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputNID" class="form-label">Numero de documento o NIT</label>
+        <label for="inputNID" class="form-label">Numero de documento o NIT<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputNID" formControlName="numeroDocumento">
         <div *ngIf="registerForm.controls.numeroDocumento.touched && registerForm.controls.numeroDocumento.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.numeroDocumento.errors?.required">
@@ -172,14 +173,14 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="email" class="form-label">Correo electronico</label>
+        <label for="email" class="form-label">Correo electronico<strong class="requerido">*</strong></label>
         <input type="email" class="form-control" id="email" placeholder="usario@gmail.com" formControlName="correoElectronico">
         <div *ngIf="registerForm.controls.correoElectronico.touched && registerForm.controls.correoElectronico.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.correoElectronico.errors?.required">
             <i class="fas fa-exclamation-circle fa-fw"></i>
             Campo requerido
           </small>
-          <small class="text-danger" *ngIf="registerForm.controls.email.errors?.pattern">
+          <small class="text-danger" *ngIf="registerForm.controls.correoElectronico.errors?.pattern">
             <i class="fas fa-exclamation-circle fa-fw"></i>
             Correo inválido
           </small>
@@ -187,7 +188,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputTelefono1" class="form-label">Número de teléfono 1</label>
+        <label for="inputTelefono1" class="form-label">Número de teléfono 1<strong class="requerido">*</strong></label>
         <input type="email" class="form-control" id="inputTelefono1" formControlName="numeroTelefono1">
         <div *ngIf="registerForm.controls.numeroTelefono1.touched && registerForm.controls.numeroTelefono1.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.numeroTelefono1.errors?.required">
@@ -209,14 +210,6 @@
         <label for="inputTelefono2" class="form-label">Número de teléfono 2</label>
         <input type="text" class="form-control" id="inputTelefono2" formControlName="numeroTelefono2">
         <div *ngIf="registerForm.controls.numeroTelefono2.touched && registerForm.controls.numeroTelefono2.invalid">
-          <small class="text-danger" *ngIf="registerForm.controls.numeroTelefono2.errors?.required">
-            <i class="fas fa-exclamation-circle fa-fw"></i>
-            Campo requerido
-          </small>
-          <small class="text-danger" *ngIf="registerForm.controls.numeroTelefono2.errors?.minlength">
-            <i class="fas fa-exclamation-circle fa-fw"></i>
-            La longitud mínima es de 6 caracteres
-          </small>
           <small class="text-danger" *ngIf="registerForm.controls.numeroTelefono2.errors?.pattern">
             <i class="fas fa-exclamation-circle fa-fw"></i>
             Introducir solo números en este campo
@@ -225,7 +218,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputUbicacionPais" class="form-label">País</label>
+        <label for="inputUbicacionPais" class="form-label">País<strong class="requerido">*</strong></label>
         <select id="inputUbicacionPais" class="form-select" formControlName="pais">
           <option value="" disabled="disabled">Selecciona...</option>
           <option>Colombia</option>
@@ -239,7 +232,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputUbicacionCiudad" class="form-label">Ciudad</label>
+        <label for="inputUbicacionCiudad" class="form-label">Ciudad<strong class="requerido">*</strong></label>
         <select id="inputUbicacionCiudad" class="form-select" formControlName="ciudad" >
           <option value="" disabled="disabled">Selecciona...</option>
           <option>Cali</option>
@@ -277,7 +270,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputDireccion" class="form-label">Direccion</label>
+        <label for="inputDireccion" class="form-label">Direccion<strong class="requerido">*</strong></label>
         <input type="text" class="form-control" id="inputDireccion" formControlName="direccion">
         <div *ngIf="registerForm.controls.direccion.touched && registerForm.controls.direccion.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.direccion.errors?.required">
@@ -288,7 +281,7 @@
       </div>
 
       <div class="col-md-6 pt-4">
-        <label for="inputPassword" class="form-label">Contraseña</label>
+        <label for="inputPassword" class="form-label">Contraseña<strong class="requerido">*</strong></label>
         <input type="password" class="form-control" id="inputPassword" formControlName="contrasena" >
         <div *ngIf="registerForm.controls.contrasena.touched && registerForm.controls.contrasena.invalid">
           <small class="text-danger" *ngIf="registerForm.controls.contrasena.errors?.required">

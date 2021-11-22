@@ -15,6 +15,7 @@ export class RegistroComponent implements OnInit {
   registerForm: FormGroup;
   esEmpresa: boolean= false;
   showEmpresa: boolean= true;
+  showVoluntario: boolean= true;
 
   // La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.
   // NO puede tener otros símbolos.
@@ -30,17 +31,17 @@ export class RegistroComponent implements OnInit {
   ) {
     this.registerForm = this.formBuilder.group({
       tipoUsuario:  ['', Validators.required],
-      sector:  ['', Validators.required],
+      sector:  ['',Validators.required],
       nombreOrganizacion:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
       primerNombre:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
-      segundoNombre:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
+      segundoNombre:  ['', Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)],
       primerApellido:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
       segundoApellido:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
       tipoDocumento:  ['', Validators.required],
       numeroDocumento:  ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^[0-9]+$/)]],
       correoElectronico:  ['', [Validators.required,Validators.pattern(/.+\@.+\..+/)]],
       numeroTelefono1:  ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^[0-9]+$/)]],
-      numeroTelefono2:  ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^[0-9]+$/)]],
+      numeroTelefono2:  ['', Validators.pattern(/^[0-9]+$/)],
       pais:  ['', Validators.required],
       ciudad:  ['', Validators.required],
       direccion:  ['', Validators.required],
@@ -48,16 +49,8 @@ export class RegistroComponent implements OnInit {
     });
     console.log(this.registerForm);
     this.registerForm.valueChanges.subscribe(x => {
-      // console.log('pristine: ', this.registerForm.controls.Pnombre.pristine);
-      // console.log('invalid: ', this.registerForm.controls.Pnombre.invalid);
-      /*console.log('pristine & invalid', this.registerForm.controls.Pnombre.invalid && this.registerForm.controls.Pnombre.pristine);*/
       console.log('form status', x);
       console.log(this.registerForm);
-      // Swal.fire(
-      //   'The Internet?',
-      //   'That thing is still around?',
-      //   'question'
-      // );
     });
   }
 
@@ -68,14 +61,24 @@ export class RegistroComponent implements OnInit {
     if (this.registerForm.controls.tipoUsuario.value=="Empresa" || this.registerForm.controls.tipoUsuario.value=="Fundación"){
       this.registerForm.get('nombreOrganizacion')?.enable();
       this.registerForm.get('sector')?.enable();
+      this.registerForm.get('primerNombre')?.disable();
+      this.registerForm.get('segundoNombre')?.disable();
+      this.registerForm.get('primerApellido')?.disable();
+      this.registerForm.get('segundoApellido')?.disable();
         this.showEmpresa=true;
+        this.showVoluntario=false;
         console.log("running");
 
         return true;
       }else{
         this.showEmpresa=false;
+        this.showVoluntario=true;
         this.registerForm.get('nombreOrganizacion')?.disable();
         this.registerForm.get('sector')?.disable();
+        this.registerForm.get('primerNombre')?.enable();
+      this.registerForm.get('segundoNombre')?.enable();
+      this.registerForm.get('primerApellido')?.enable();
+      this.registerForm.get('segundoApellido')?.enable();
         return false;
 
       }
