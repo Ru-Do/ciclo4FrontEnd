@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class UserService {
   url = 'http://localhost:4000/api/user/';
+  USER : any;
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +20,8 @@ export class UserService {
     return this.http.post(this.url, user);
   }
 
-  obtenerUser(id: string): Observable<any> {
-    return this.http.get(this.url + id);
+  obtenerUser(login: any) {
+    return this.http.post(this.url + 'login', login);
   }
 
 }

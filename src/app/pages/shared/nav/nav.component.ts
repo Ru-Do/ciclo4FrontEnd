@@ -17,21 +17,17 @@ export class NavComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private _userService: UserService
+    public _userService: UserService
   ) {  }
 
   ngOnInit(): void {
     this.obtenerUsers();
+
   }
 
 
   obtenerUsers () {
-    this._userService.getUsers().subscribe(data => {
-      console.log(data);
-      this.listUsers = data;
-    }, error => {
-      console.log(error);
-    })
+
   }
 
 }

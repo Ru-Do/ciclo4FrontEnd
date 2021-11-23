@@ -1,8 +1,8 @@
 <div class="login_container">
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" >
     <div class="card login">
       <img src="assets/img/logotudonacion1.png">
-      <form class="form-login" [formGroup]="loginForm">
+      <form class="form-login" [formGroup]="loginForm" (ngSubmit)="obtenerLogin()">
         <h1>Inicio de sesion</h1>
         <div>
           <input class=campos formControlName="email" type="email" name="email" placeholder="Enter your email"
@@ -29,7 +29,7 @@
 
           </div>
         </div>
-        <button class="btn btn-Button" type="submit">
+        <button type="submit" class="btn btn-Button" [disabled]="loginForm.invalid">
           Iniciar sesión
         </button>
         <p>

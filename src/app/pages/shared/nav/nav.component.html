@@ -1,24 +1,19 @@
-<nav class="navbar  navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
+<nav class="row  navbar  navbar-expand-lg navbar-dark ">
+  <div class="container-fluid ">
     <a class="navbar-brand" routerLink="/">
       <img src="assets\img\logotudonacion1.png" alt="logo tudonacion" height="50" class="mx-3">
-      <small *ngIf="!!userData" class="fw-bold h6">{{userData.tipoUsuario | uppercase}}</small>
+      <small *ngIf="!!userData" class="fw-bold h6">{{_userService.USER.login.tipoUsuario | uppercase}}</small>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse  text-right" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <i class="fas fa-home fa-fw"></i>
-            Inicio
-          </a>
-        </li>
-        <ng-container *ngIf="!userData">
-          <li class="nav-item">
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+
+        <ng-container *ngIf="!_userService.USER">
+          <li class="nav-item ">
             <a class="nav-link" routerLink="/login" routerLinkActive="active">
               <i class="fas fa-sign-in-alt fa-fw"></i>
               Iniciar Sesion
@@ -31,10 +26,16 @@
             </a>
           </li>
         </ng-container>
-        <li class="nav-item dropdown show" *ngIf="!!userData">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown show" *ngIf="!!_userService.USER">
+          <a *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user fa-fw"></i>
-            {{userData.primerNombre}} {{userData.segundoNombre}} {{userData.primerApellido}} {{userData.segundoApellido}}
+            {{_userService.USER.login.primerNombre}} {{_userService.USER.login.segundoNombre}}
+            {{_userService.USER.login.primerApellido}} {{_userService.USER.login.segundoApellido}}
+          </a>
+          <a *ngIf="_userService.USER.login.tipoUsuario=='Fundación' || _userService.USER.login.tipoUsuario=='Empresa'"
+            class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user fa-fw"></i>
+            {{_userService.USER.login.nombreOrganizacion}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li>
@@ -44,11 +45,11 @@
               </a>
             </li>
             <li>
-              <a class="dropdown-item" >
+              <a class="dropdown-item" routerLink="/profile" >
                 <i class="fas fa-user-edit fa-fw"></i>
                 Editar perfil de usuario
               </a>
-            </li>
+            </li >
             <li>
               <a type="button" class="dropdown-item">
                 <i class="fas fa-sign-out-alt fa-fw"></i>
@@ -56,6 +57,12 @@
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fas fa-home fa-fw"></i>
+            Inicio
+          </a>
         </li>
       </ul>
     </div>
