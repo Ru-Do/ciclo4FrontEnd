@@ -1,0 +1,293 @@
+<div class="container my-5 registro border border-success rounded">
+    <form [formGroup]="perfilForm">
+        <div class="row p-3">
+        <h2 class="text-center p-3">Perfil Usuario</h2>
+        <h6 class="requerido p-3"> * Requerido</h6>
+        <div class="col-md-6 pt-4 box" >
+            <label for="inputtipoUsuario" class="form-label">Tipo de Usuario<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" formControlName="tipoUsuario" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.tipoUsuario.touched && perfilForm.controls.tipoUsuario.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.tipoUsuario.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundacion'" >
+            <label for="inputSector" class="form-label">Sector económico <strong class="requerido">*</strong></label>
+            <select id="inputSector" class="form-select" formControlName="sector" ng-disable="!enableField">
+            <option value="" disabled="disabled">Selecciona...</option>
+            <option>Alimentos</option>
+            <option>Textiles</option>
+            <option>Calzado</option>
+            <option>Implementos escolares</option>
+            <option>Educación</option>
+            <option>Servicios</option>
+            <option>Salud</option>
+            <option>Consumo masivo</option>
+            <option>Transporte</option>
+            <option>Otros</option>
+            </select>
+          <div *ngIf="perfilForm.controls.sector.touched && perfilForm.controls.sector.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.sector.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundacion'">
+            <label for="inputNempresa" class="form-label">Nombre de la organización<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" formControlName="nombreOrganizacion" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.nombreOrganizacion.touched && perfilForm.controls.nombreOrganizacion.invalid">
+                <small class="text-danger"*ngIf="perfilForm.controls.nombreOrganizacion.errors?.required">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Campo requerido
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4" *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <label for="inputPnombre" class="form-label">Primer nombre<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" id="inputPnombre" formControlName="primerNombre" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.primerNombre.touched && perfilForm.controls.primerNombre.invalid">
+                <small class="text-danger" *ngIf="perfilForm.controls.primerNombre.errors?.required">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Campo requerido
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.primerNombre.errors?.minlength">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    La longitud mínima es de 3 caracteres
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.primerNombre.errors?.pattern">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Introducir solo letras en este campo
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4" *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <label for="inputSnombre" class="form-label">Segundo nombre</label>
+            <input type="text" class="form-control" id="inputSnombre" formControlName="segundoNombre" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.segundoNombre.touched && perfilForm.controls.segundoNombre.invalid">
+                <small class="text-danger" *ngIf="perfilForm.controls.segundoNombre.errors?.required">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Campo requerido
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.segundoNombre.errors?.minlength">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    La longitud mínima es de 3 caracteres
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.segundoNombre.errors?.pattern">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Introducir solo letras en este campo
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4" *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <label for="inputPapellido" class="form-label">Primer apellido<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" id="inputPapellido" formControlName="primerApellido" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.primerApellido.touched && perfilForm.controls.primerApellido.invalid">
+                <small class="text-danger" *ngIf="perfilForm.controls.primerApellido.errors?.required">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Campo requerido
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.primerApellido.errors?.minlength">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    La longitud mínima es de 3 caracteres
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.primerApellido.errors?.pattern">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Introducir solo letras en este campo
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4" *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <label for="inputSapellido" class="form-label">Segundo apellido<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" id="inputSapellido" formControlName="segundoApellido" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.segundoApellido.touched && perfilForm.controls.segundoApellido.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.segundoApellido.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.segundoApellido.errors?.minlength">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                La longitud mínima es de 3 caracteres
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.segundoApellido.errors?.pattern">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Introducir solo letras en este campo
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputTipoID" class="form-label">Tipo de documento<strong class="requerido">*</strong></label>
+            <select id="inputTipoID" class="form-select" formControlName="tipoDocumento" ng-disable="!enableField">
+            <option value="" disabled="disabled">Selecciona...</option>
+            <option>CC</option>
+            <option>CE</option>
+            <option>NIT</option>
+            </select>
+          <div *ngIf="perfilForm.controls.tipoDocumento.touched && perfilForm.controls.tipoDocumento.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.tipoDocumento.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputNID" class="form-label">Numero de documento o NIT<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" id="inputNID" formControlName="numeroDocumento" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.numeroDocumento.touched && perfilForm.controls.numeroDocumento.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.numeroDocumento.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.numeroDocumento.errors?.minlength">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                La longitud mínima es de 6 caracteres
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.numeroDocumento.errors?.pattern">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Introducir solo números en este campo
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="email" class="form-label">Correo electronico<strong class="requerido">*</strong></label>
+            <input type="email" class="form-control" id="email" placeholder="usario@gmail.com" formControlName="correoElectronico" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.correoElectronico.touched && perfilForm.controls.correoElectronico.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.correoElectronico.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.correoElectronico.errors?.pattern">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Correo inválido
+            </small>
+                </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputTelefono1" class="form-label">Número de teléfono 1<strong class="requerido">*</strong></label>
+            <input type="email" class="form-control" id="inputTelefono1" formControlName="numeroTelefono1" [readonly]="!enableField">
+            <div *ngIf="perfilForm.controls.numeroTelefono1.touched && perfilForm.controls.numeroTelefono1.invalid">
+                <small class="text-danger" *ngIf="perfilForm.controls.numeroTelefono1.errors?.required">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Campo requerido
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.numeroTelefono1.errors?.minlength">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                        La longitud mínima es de 6 caracteres
+                </small>
+                <small class="text-danger" *ngIf="perfilForm.controls.numeroTelefono1.errors?.pattern">
+                    <i class="fas fa-exclamation-circle fa-fw"></i>
+                    Introducir solo números en este campo
+                </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputTelefono2" class="form-label">Número de teléfono 2</label>
+            <input type="text" class="form-control" id="inputTelefono2" formControlName="numeroTelefono2" [readonly]="!enableField">{{_userService.USER.login.primerApellido}}
+          <div *ngIf="perfilForm.controls.numeroTelefono2.touched && perfilForm.controls.numeroTelefono2.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.numeroTelefono2.errors?.pattern">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Introducir solo números en este campo
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputUbicacionPais" class="form-label">País<strong class="requerido">*</strong></label>
+            <select id="inputUbicacionPais" class="form-select" formControlName="pais" ng-disable="!enableField">
+            <option value="" disabled="disabled">Selecciona...</option>
+            <option>Colombia</option>
+            </select>
+          <div *ngIf="perfilForm.controls.pais.touched && perfilForm.controls.pais.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.pais.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+        </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputUbicacionCiudad" class="form-label">Ciudad<strong class="requerido">*</strong></label>
+            <select id="inputUbicacionCiudad" class="form-select" formControlName="ciudad" ng-disable="!enableField">
+                <option value="" disabled="disabled">Selecciona...</option>
+                <option>Cali</option>
+                <option>Barranquilla</option>
+                <option>Cartagena</option>
+                <option>Medellín</option>
+                <option>Bogotá</option>
+                <option>Cartagena</option>
+                <option>Cúcuta</option>
+                <option>Bucaramanga</option>
+                <option>Bello</option>
+                <option>Villavicenci</option>
+                <option>Ibagué</option>
+                <option>Valledupar</option>
+                <option>Manizales</option>
+                <option>Ibagué</option>
+                <option>Pereira</option>
+                <option>Montería</option>
+                <option>Pasto</option>
+                <option>Neiva</option>
+                <option>Armenia</option>
+                <option>Santa Marta</option>
+                <option>Cúcuta</option>
+                <option>Cartagena de Indias</option>
+                <option>Soacha</option>
+                <option>Soledad</option>
+                <option>Bello</option>
+            </select>
+            <div *ngIf="perfilForm.controls.ciudad.touched && perfilForm.controls.ciudad.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.ciudad.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputDireccion" class="form-label">Direccion<strong class="requerido">*</strong></label>
+            <input type="text" class="form-control" id="inputDireccion" formControlName="direccion" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.direccion.touched && perfilForm.controls.direccion.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.direccion.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-6 pt-4">
+            <label for="inputPassword" class="form-label">Contraseña<strong class="requerido">*</strong></label>
+            <input type="password" class="form-control" id="inputPassword" formControlName="contrasena" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.contrasena.touched && perfilForm.controls.contrasena.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.contrasena.errors?.required">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                Campo requerido
+            </small>
+            <small class="text-danger" *ngIf="perfilForm.controls.contrasena.errors?.pattern">
+                <i class="fas fa-exclamation-circle fa-fw"></i>
+                La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. NO puede tener otros símbolos.
+            </small>
+            </div>
+        </div>
+
+        <div class="col-md-12 pt-5 pb-3 text-center">
+            <button type="submit" class="btn btn-primary btn-green" (click)='enableFields()'>Editar </button>
+            <button type="button" class="btn btn-primary btn-green btn-center" (click)="pop()">Guardar</button>
+        </div>
+        </div>
+    </form>
+</div>
+<router-outlet></router-outlet>
+

@@ -27,7 +27,7 @@
 
 <!-- Pide Tus Donaciones button -->
 <!-- inicio botton  -->
-<div class="contenedor" *ngIf = "tipoU === 'Fundacion'">
+<div class="contenedor" *ngIf = "_userService.USER.login.tipoUsuario === 'Fundacion'">
   <!-- Boton de filtro -->
   <div class="row">
     <div class="col-md-5"></div>
@@ -37,7 +37,7 @@
 <!-- Fin Publica tus Necesidades button -->
 
 <!-- Tabla visualizacion mis donaciones -->
-<div class="contenedor" *ngIf = "tipoU === 'Empresa' || tipoU === 'Voluntario'" >
+<div class="contenedor" *ngIf = "_userService.USER.login.tipoUsuario === 'Empresa' || _userService.USER.login.tipoUsuario === 'Voluntario'" >
   <!-- Botones tablas -->
   <div class="row">
     <div class="col-md-5"></div>
@@ -48,39 +48,39 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
     <table class="table table-hover table-bordered">
-       <thead class="thead-dark tabla1">
-          <tr *ngIf= "tipoU == 'Empresa' || tipoU == 'Fundacion'">
-             <th scope="col" class="text-center col-md-3 ">Nombre</th>
-             <th scope="col" class="text-center col-md-2 ">Fecha de Apertura</th>
-             <th scope="col" class="text-center col-md-2 ">Fecha de Cierre</th>
-             <th scope="col" class="text-center col-md-2 ">Sector</th>
-             <th scope="col" class="text-center col-md-4 ">Descripción</th>
-             <th scope="col" class="text-center col-md-2 ">Estado</th>
-             <th scope="col" class="text-center col-md-2 ">Action</th>
+      <thead class="thead-dark tabla1">
+          <tr *ngIf= "_userService.USER.login.tipoUsuario == 'Empresa' || _userService.USER.login.tipoUsuario == 'Fundacion'">
+              <th scope="col" class="text-center col-md-3 ">Nombre</th>
+              <th scope="col" class="text-center col-md-2 ">Fecha de Apertura</th>
+              <th scope="col" class="text-center col-md-2 ">Fecha de Cierre</th>
+              <th scope="col" class="text-center col-md-2 ">Sector</th>
+              <th scope="col" class="text-center col-md-4 ">Descripción</th>
+              <th scope="col" class="text-center col-md-2 ">Estado</th>
+              <th scope="col" class="text-center col-md-2 ">Action</th>
           </tr>
-          <tr *ngIf= "tipoU == 'Voluntario'">
+          <tr *ngIf= "_userService.USER.login.tipoUsuario === 'Voluntario'">
             <th scope="col" class="text-center col-md-4 ">Tipo</th>
 
             <th scope="col" class="text-center col-md-5 ">Descripción</th>
             <th scope="col" class="text-center col-md-3 ">Estado</th>
             <th scope="col" class="text-center col-md-2 ">Action</th>
-         </tr>
-       </thead>
-       <tbody *ngIf= "tipoU == 'Empresa' || tipoU == 'Fundacion'" class="">
+          </tr>
+      </thead>
+       <tbody *ngIf= "_userService.USER.login.tipoUsuario == 'Empresa' || _userService.USER.login.tipoUsuario == 'Fundacion'" class="">
           <tr  >
-             <td scope="row" class=""></td>
-             <td scope="row" class=""></td>
-             <td scope="row" class=""></td>
-             <td scope="row" class=""></td>
-             <td scope="row" class=""></td>
-             <td scope="row" class=""></td>
-             <td scope="row" class="">
+              <td scope="row" class=""></td>
+              <td scope="row" class=""></td>
+              <td scope="row" class=""></td>
+              <td scope="row" class=""></td>
+              <td scope="row" class=""></td>
+              <td scope="row" class=""></td>
+              <td scope="row" class="">
                 <button type="button" class="btn btn-primary btn-green btn-center">Editar</button>
                 <button type="button" class="btn btn-primary btn-orange btn-center" (click)="pop()">Eliminar</button>
              </td>
           </tr>
        </tbody>
-       <tbody *ngIf= "tipoU == 'Fundaciones'" class="">
+       <tbody *ngIf= "_userService.USER.login.tipoUsuario == 'Fundaciones'" class="">
         <tr >
           <td scope="row" class=""></td>
           <td scope="row" class=""></td>

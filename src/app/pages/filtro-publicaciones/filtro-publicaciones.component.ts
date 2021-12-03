@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { Donacion } from 'src/app/pages/filtro-publicaciones/donacion';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 
@@ -28,7 +30,7 @@ export class FiltroPublicacionesComponent implements OnInit {
   ]
 
 
-  constructor(private formBuilder: FormBuilder ) {
+  constructor(private formBuilder: FormBuilder,public _userService: UserService ) {
     this.filtroForm = this.formBuilder.group({
       sector:  ['', Validators.required],
       ciudad:  ['', Validators.required],

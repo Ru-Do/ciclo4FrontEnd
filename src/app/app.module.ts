@@ -18,6 +18,8 @@ import { FundacionesComponent } from './pages/fundaciones/fundaciones.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { PerfilUsuarioComponent } from './pages/perfil-usuario/perfil-usuario.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
     EmpresasComponent,
     FundacionesComponent,
     VolunteerFormComponent,
-    NotFoundComponent
+    PerfilUsuarioComponent,
+    NotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
