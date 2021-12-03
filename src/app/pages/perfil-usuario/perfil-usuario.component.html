@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundacion'" >
+        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundación'" >
             <label for="inputSector" class="form-label">Sector económico <strong class="requerido">*</strong></label>
             <select id="inputSector" class="form-select" formControlName="sector" ng-disable="!enableField">
             <option value="" disabled="disabled">Selecciona...</option>
@@ -27,6 +27,7 @@
             <option>Salud</option>
             <option>Consumo masivo</option>
             <option>Transporte</option>
+            <option>Deportes</option>
             <option>Otros</option>
             </select>
           <div *ngIf="perfilForm.controls.sector.touched && perfilForm.controls.sector.invalid">
@@ -37,7 +38,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundacion'">
+        <div class="col-md-6 pt-4 box" *ngIf="_userService.USER.login.tipoUsuario==='Empresa'|| _userService.USER.login.tipoUsuario==='Fundación'">
             <label for="inputNempresa" class="form-label">Nombre de la organización<strong class="requerido">*</strong></label>
             <input type="text" class="form-control" formControlName="nombreOrganizacion" [readonly]="!enableField">
             <div *ngIf="perfilForm.controls.nombreOrganizacion.touched && perfilForm.controls.nombreOrganizacion.invalid">
@@ -161,13 +162,13 @@
 
         <div class="col-md-6 pt-4">
             <label for="email" class="form-label">Correo electronico<strong class="requerido">*</strong></label>
-            <input type="email" class="form-control" id="email" placeholder="usario@gmail.com" formControlName="correoElectronico" [readonly]="!enableField">
-          <div *ngIf="perfilForm.controls.correoElectronico.touched && perfilForm.controls.correoElectronico.invalid">
-            <small class="text-danger" *ngIf="perfilForm.controls.correoElectronico.errors?.required">
+            <input type="email" class="form-control" id="email" placeholder="usario@gmail.com" formControlName="email" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.email.touched && perfilForm.controls.email.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.email.errors?.required">
                 <i class="fas fa-exclamation-circle fa-fw"></i>
                 Campo requerido
             </small>
-            <small class="text-danger" *ngIf="perfilForm.controls.correoElectronico.errors?.pattern">
+            <small class="text-danger" *ngIf="perfilForm.controls.email.errors?.pattern">
                 <i class="fas fa-exclamation-circle fa-fw"></i>
                     Correo inválido
             </small>
@@ -269,13 +270,13 @@
 
         <div class="col-md-6 pt-4">
             <label for="inputPassword" class="form-label">Contraseña<strong class="requerido">*</strong></label>
-            <input type="password" class="form-control" id="inputPassword" formControlName="contrasena" [readonly]="!enableField">
-          <div *ngIf="perfilForm.controls.contrasena.touched && perfilForm.controls.contrasena.invalid">
-            <small class="text-danger" *ngIf="perfilForm.controls.contrasena.errors?.required">
+            <input type="password" class="form-control" id="inputPassword" formControlName="password" [readonly]="!enableField">
+          <div *ngIf="perfilForm.controls.password.touched && perfilForm.controls.password.invalid">
+            <small class="text-danger" *ngIf="perfilForm.controls.password.errors?.required">
                 <i class="fas fa-exclamation-circle fa-fw"></i>
                 Campo requerido
             </small>
-            <small class="text-danger" *ngIf="perfilForm.controls.contrasena.errors?.pattern">
+            <small class="text-danger" *ngIf="perfilForm.controls.password.errors?.pattern">
                 <i class="fas fa-exclamation-circle fa-fw"></i>
                 La contraseña debe tener entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. NO puede tener otros símbolos.
             </small>

@@ -19,14 +19,14 @@ export class PerfilUsuarioComponent implements OnInit {
   enableField: boolean=false;
   disabledfield: boolean =false;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(public formBuilder: FormBuilder,
     public _userService: UserService,
     private toastr: ToastrService,
     private router: Router) {
     this.perfilForm = this.formBuilder.group({
       tipoUsuario:  [_userService.USER.login.tipoUsuario, Validators.required],
       sector:  [_userService.USER.login.sector, Validators.required],
-      nombreOrganizacion:  [_userService.USER.login.tipoUsuario, [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
+      nombreOrganizacion:  [_userService.USER.login.nombreOrganizacion, [Validators.required, Validators.minLength(3)]],
       primerNombre:  [_userService.USER.login.primerNombre, [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
       segundoNombre:  [_userService.USER.login.segundoNombre, [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
       primerApellido:  [_userService.USER.login.segundoApellido, [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
@@ -41,10 +41,12 @@ export class PerfilUsuarioComponent implements OnInit {
       direccion:  [_userService.USER.login.direccion, [Validators.required, Validators.pattern(/^([cC]\/|[cC]alle)\s?([A-Za-z ]{0,})\,?\s?(\d{0,}|s\/n)\,?\s?\d{0,}[ºª]?\s?[a-zA-Z]?$/gm)]],
       password: [_userService.USER.login.contrasena, [Validators.required, Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]]
     })
-    
+
+  console.log(this.perfilForm)
+
   }
 
-  
+
 
   enableFields() {
     console.log("runnn");
@@ -66,7 +68,7 @@ export class PerfilUsuarioComponent implements OnInit {
     this.perfilForm.get('direccion')?.enable();
     this.perfilForm.get('password')?.enable();
     //console.log("runnn" + this.enableField);
-  
+
   }
 
   ngOnInit(): void {
@@ -95,5 +97,5 @@ export class PerfilUsuarioComponent implements OnInit {
       }
     })
   }
-  
+
 }
