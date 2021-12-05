@@ -24,4 +24,8 @@ export class UserService {
     return this.http.post(this.url + 'login', login);
   }
 
+  editarUser(user: User){
+    //return this.http.put(this.url + _id, user);
+  }
+
 }
