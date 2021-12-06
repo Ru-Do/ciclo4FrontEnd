@@ -1,170 +1,35 @@
-
-<!-- Publica Tus Donaciones button empresa -->
-<!-- inicio botton  -->
-<div class="contenedor" *ngIf = "tipoU === 'Empresa'">
-  <!-- Boton de filtro -->
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-5"></div>
-    <a class="buttonFiltro text-center col-md-2" href="empresas"> <b>Publica Tus Donaciones</b></a>
-  </div>
-</div>
-<!-- Fin Publica tus donaciones button -->
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">LISTADO DE PUBLICACIONES</span>
+          <button class="btn btn-success float-end" routerLink="/empresas">NUEVO</button>
+          <table *ngIf="listPublicaciones.length > 0" class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Responsable</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Sector</th>
+                <th scope="col"></th>
 
-<!-- Publica Tus Donaciones button Voluntario-->
-<!-- inicio botton  -->
-<div class="contenedor" *ngIf = "tipoU === 'Voluntario'">
-  <!-- Boton de filtro -->
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <a class="btn btn-success" routerLink="/volunteerForm">
-        <i class="fas fa-pen-alt fa-fw"></i>
-        Crear nueva publicacion
-      </a>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let publicacion of listPublicaciones'>
+                <td>{{publicacion.idDueno}}</td>
+                <td>2</td>
+                <td>3</td>
+                <td>
+                  <i  class="fas fa-edit text-primary"></i>
+                  <i  class="fas fa-trash-alt text-danger"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<!-- Fin Publica tus donaciones button -->
-
-<!-- Pide Tus Donaciones button -->
-<!-- inicio botton  -->
-<div class="contenedor" *ngIf = "_userService.USER.login.tipoUsuario === 'Fundacion'">
-  <!-- Boton de filtro -->
-  <div class="row">
-    <div class="col-md-5"></div>
-    <a class="buttonFiltro text-center col-md-2 " href="fundaciones"><b>Solicita Tus Donaciones</b></a>
-  </div>
-</div>
-<!-- Fin Publica tus Necesidades button -->
-
-<!-- Tabla visualizacion mis donaciones -->
-<div class="contenedor" *ngIf = "_userService.USER.login.tipoUsuario === 'Empresa' || _userService.USER.login.tipoUsuario === 'Voluntario'" >
-  <!-- Botones tablas -->
-  <div class="row">
-    <div class="col-md-5"></div>
-    <h3 class="text-center"> Mis Donaciones </h3>
-  </div>
-
-  <div class="row tablamisdonaciones">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-    <table class="table table-hover table-bordered">
-      <thead class="thead-dark tabla1">
-          <tr *ngIf= "_userService.USER.login.tipoUsuario == 'Empresa' || _userService.USER.login.tipoUsuario == 'Fundacion'">
-              <th scope="col" class="text-center col-md-3 ">Nombre</th>
-              <th scope="col" class="text-center col-md-2 ">Fecha de Apertura</th>
-              <th scope="col" class="text-center col-md-2 ">Fecha de Cierre</th>
-              <th scope="col" class="text-center col-md-2 ">Sector</th>
-              <th scope="col" class="text-center col-md-4 ">Descripción</th>
-              <th scope="col" class="text-center col-md-2 ">Estado</th>
-              <th scope="col" class="text-center col-md-2 ">Action</th>
-          </tr>
-          <tr *ngIf= "_userService.USER.login.tipoUsuario === 'Voluntario'">
-            <th scope="col" class="text-center col-md-4 ">Tipo</th>
-
-            <th scope="col" class="text-center col-md-5 ">Descripción</th>
-            <th scope="col" class="text-center col-md-3 ">Estado</th>
-            <th scope="col" class="text-center col-md-2 ">Action</th>
-          </tr>
-      </thead>
-       <tbody *ngIf= "_userService.USER.login.tipoUsuario == 'Empresa' || _userService.USER.login.tipoUsuario == 'Fundacion'" class="">
-          <tr  >
-              <td scope="row" class=""></td>
-              <td scope="row" class=""></td>
-              <td scope="row" class=""></td>
-              <td scope="row" class=""></td>
-              <td scope="row" class=""></td>
-              <td scope="row" class=""></td>
-              <td scope="row" class="">
-                <button type="button" class="btn btn-primary btn-green btn-center">Editar</button>
-                <button type="button" class="btn btn-primary btn-orange btn-center" (click)="pop()">Eliminar</button>
-             </td>
-          </tr>
-       </tbody>
-       <tbody *ngIf= "_userService.USER.login.tipoUsuario == 'Fundaciones'" class="">
-        <tr >
-          <td scope="row" class=""></td>
-          <td scope="row" class=""></td>
-          <td scope="row" class=""></td>
-          <td scope="row" class="">
-             <button type="button" class="btn btn-primary btn-green btn-center">Editar</button>
-             <button type="button" class="btn btn-primary btn-orange btn-center" (click)="pop()">Eliminar</button>
-          </td>
-       </tr>
-     </tbody>
-    </table>
-    </div>
-  </div>
-
-
-    <!-- Tabla  mis Donaciones -->
-  <div class="row tablamisdonaciones">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <table class="table table-hover table-bordered">
-        <thead class="thead-dark tabla1">
-          <tr>
-            <th scope="col" class="text-center col-md-5 ">Descripción</th>
-            <th scope="col" class="text-center col-md-5 ">Estado</th>
-            <th scope="col" class="text-center col-md-1 ">Acciones</th>
-          </tr>
-        </thead>
-        <tbody class="">
-          <tr *ngFor="let donacion of donacionArray">
-            <td scope="row" class="">{{donacion.name}}</td>
-            <td>{{donacion.estado}}</td>
-            <td>
-              <button class="btn btn-primary btn-green btn-center">Editar</button>
-              <button class="btn btn-primary btn-orange btn-center" (click)="pop()">Borrar</button>
-            </td>
-          </tr>
-        </tbody>
-
-      </table>
-    </div>
-    <div class="col-md-2"></div>
-  </div>
-</div>
-
-<!-- Tabla visualizacion mis Necesidades -->
-<div class="contenedor" >
-  <!-- Botones tabla necesidades -->
-  <div class="row">
-    <div class="col-md-5"></div>
-    <h3 class="text-center"> Donaciones Pedidas </h3>
-  </div>
-
-    <!-- Tabla  mis necesidades -->
-  <div class="row tabladonacionespedidas">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <table class="table table-hover table-bordered">
-        <thead class="thead-dark tabla1">
-          <tr>
-            <th scope="col" class="text-center col-md-5 ">Descripción</th>
-            <th scope="col" class="text-center col-md-5 ">Estado</th>
-            <th scope="col" class="text-center col-md-1 ">Acciones</th>
-          </tr>
-        </thead>
-        <tbody class="">
-          <tr *ngFor="let donacion of pedidoArray">
-            <td scope="row" class="">{{donacion.name}}</td>
-            <td scope="row">{{donacion.estado}}</td>
-            <td scope="row" class="text-center" *ngIf = "tipoU === 'Fundacion'">
-              <button type="button" class="btn btn-primary btn-green btn-center">Editar</button>
-            </td>
-            <td scope="row" class="text-center" *ngIf = "tipoU === 'Fundacion'">
-              <button type="button" class="btn btn-primary btn-orange btn-center" (click)="pop()">Borrar</button>
-
-
-            </td>
-          </tr>
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-</div>
-
-

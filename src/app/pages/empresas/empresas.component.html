@@ -5,7 +5,7 @@
           <h1>Formulario de Donación de Empresas</h1>
           <hr>
             <div class="col-md-7">
-           <label for="sector" class="form-label" >Sector Donacion</label>
+            <label for="sector" class="form-label" >Sector Donacion</label>
             <select id="sector" class="form-select" formControlName="sector">
             <option value="" >Selecciona...</option>
             <option>Alimentos</option>
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="col-md-12 pt-3 pb-1 text-center">
-          <button type="submit" class="btn btn-empresa" role="button">PUBLICAR</button>
+          <button type="submit" class="btn btn-empresa" role="button" (click)='agregarPublicacion()'>PUBLICAR</button>
           <a class="btn btn-success" routerLink="/filtroPublicaciones">
             <i class="fas fa-pen-alt fa-fw"></i>
             Volver

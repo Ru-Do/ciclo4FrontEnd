@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'filtroPublicaciones', component: FiltroPublicacionesComponent },
   { path: 'volunteerForm', component: VolunteerFormComponent },
   { path: 'empresas', component: EmpresasComponent },
+  { path: 'empresas/:id', component: EmpresasComponent },
   { path: 'fundaciones', component: FundacionesComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'perfil', component: PerfilUsuarioComponent },

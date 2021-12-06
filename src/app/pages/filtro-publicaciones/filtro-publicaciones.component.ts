@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
-import { Donacion } from 'src/app/pages/filtro-publicaciones/donacion';
+import { ToastrService } from 'ngx-toastr';
+import { Publicacion } from 'src/app/models/publicacion';
 import { User } from 'src/app/models/user';
+import { PublicacionService } from 'src/app/services/publicacion.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -14,58 +16,34 @@ import Swal from 'sweetalert2';
 })
 
 export class FiltroPublicacionesComponent implements OnInit {
-  filtroForm: FormGroup;
-  tipoU:String = "";
-  user: any;
-  tableHead: Array<String> = [];
-  donacionArray: Donacion[] = [
-    {id:1, name:"Donacion de cuadernos",estado:"Finalizada"},
-    {id:2, name:"Donacion de sillas",estado:"En proceso"},
-    {id:3, name:"Donacion de alimentos",estado:"Activa"},
-  ];
-  pedidoArray: Donacion[] = [
-    {id:1, name:"Pedido de cuadernos",estado:"Finalizada"},
-    {id:2, name:"Pedido de sillas",estado:"En proceso"},
-    {id:3, name:"Pedido de alimentos",estado:"Activa"},
-  ]
+  listPublicaciones: Publicacion[] = [];
 
-
-  constructor(private formBuilder: FormBuilder,public _userService: UserService ) {
-    this.filtroForm = this.formBuilder.group({
-      sector:  ['', Validators.required],
-      ciudad:  ['', Validators.required],
-      fechaApertura:  ['', Validators.required],
-      fechaCierre:  ['', Validators.required],
-      nombreOrganizacion:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]]
-    });
-  }
+  constructor(
+    public _publicacionService: PublicacionService,
+    public _userService: UserService,
+    private toastr: ToastrService ) {
+    }
 
   ngOnInit(): void {
-    debugger;
+    this.obtenerPublicaciones();
   }
 
-  mostrar():void{
-    console.log("holaa")
-    var ancla = document.getElementsByClassName("filtro");
-    for (var i = 0; i < ancla.length; i++){
-      ancla[i].classList.toggle("desaparece");
-    }
+  obtenerPublicaciones () {
+    this._publicacionService.getPublicaciones().subscribe(data => {
+      console.log(data);
+      this.listPublicaciones = data;
+    }, error => {
+      console.log(error);
+    })
   }
 
-  mostrartablamisdonaciones():void{
-    console.log("holaa1")
-    var ancla = document.getElementsByClassName("tablamisdonaciones");
-    for (var i = 0; i < ancla.length; i++){
-      ancla[i].classList.toggle("desaparece");
-    }
-  }
-
-  mostrartabladonacionespedidas():void{
-    console.log("holaa1")
-    var ancla = document.getElementsByClassName("tabladonacionespedidas");
-    for (var i = 0; i < ancla.length; i++){
-      ancla[i].classList.toggle("desaparece");
-    }
+  eliminarPublicacion(id: any){
+    this._publicacionService.eliminarPublicacion(id).subscribe(data => {
+      this.toastr.error('El producto fue Eliminado con exito','Producto Borrado');
+      this.obtenerPublicaciones();
+    },error =>{
+      console.log(error);
+    })
   }
 
   pop(){
