@@ -45,9 +45,9 @@ export class PerfilUsuarioComponent implements OnInit {
       direccion:  [_userService.USER.login.direccion, [Validators.required, Validators.pattern(/^([cC]\/|[cC]alle)\s?([A-Za-z ]{0,})\,?\s?(\d{0,}|s\/n)\,?\s?\d{0,}[ºª]?\s?[a-zA-Z]?$/gm)]],
       password: [_userService.USER.login.contrasena, [Validators.required, Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]]
     })
-  this.id = _userService.USER.login.id;
+  this.id = _userService.USER.login._id;
 
-  console.log(this.id)
+  //console.log("este es el Id = "+ this.id)
 
   }
 
@@ -102,7 +102,7 @@ export class PerfilUsuarioComponent implements OnInit {
       tipoDocumento: this.perfilForm.get('tipoDocumento')?.value,
       tipoUsuario: this.perfilForm.get('tipoUsuario')?.value,
   }
-  console.log(USER);
+  console.log("este es el usuario" + USER);
     this._userService.modificarUser(this.id, USER).subscribe(data => {
       this.toastr.success('Cambios Guardados con Exito', 'Modificacion exitosa');
     }, error => {
