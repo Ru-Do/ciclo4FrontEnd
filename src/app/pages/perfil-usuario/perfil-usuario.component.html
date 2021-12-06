@@ -129,9 +129,9 @@
             <label for="inputTipoID" class="form-label">Tipo de documento<strong class="requerido">*</strong></label>
             <select id="inputTipoID" class="form-select" formControlName="tipoDocumento" ng-disable="!enableField">
             <option value="" disabled="disabled">Selecciona...</option>
-            <option>CC</option>
-            <option>CE</option>
-            <option>NIT</option>
+            <option ng-disable="enableField">CC</option>
+            <option ng-disable="enableField">CE</option>
+            <option ng-disable="enableField">NIT</option>
             </select>
           <div *ngIf="perfilForm.controls.tipoDocumento.touched && perfilForm.controls.tipoDocumento.invalid">
             <small class="text-danger" *ngIf="perfilForm.controls.tipoDocumento.errors?.required">
@@ -196,7 +196,7 @@
 
         <div class="col-md-6 pt-4">
             <label for="inputTelefono2" class="form-label">Número de teléfono 2</label>
-            <input type="text" class="form-control" id="inputTelefono2" formControlName="numeroTelefono2" [readonly]="!enableField">{{_userService.USER.login.primerApellido}}
+            <input type="text" class="form-control" id="inputTelefono2" formControlName="numeroTelefono2" [readonly]="!enableField">
           <div *ngIf="perfilForm.controls.numeroTelefono2.touched && perfilForm.controls.numeroTelefono2.invalid">
             <small class="text-danger" *ngIf="perfilForm.controls.numeroTelefono2.errors?.pattern">
                 <i class="fas fa-exclamation-circle fa-fw"></i>
@@ -285,7 +285,7 @@
 
         <div class="col-md-12 pt-5 pb-3 text-center">
             <button type="submit" class="btn btn-primary btn-green" (click)='enableFields()'>Editar </button>
-            <button type="button" class="btn btn-primary btn-green btn-center" (click)="pop()">Guardar</button>
+            <button type="button" class="btn btn-primary btn-green btn-center" (click)="pop()" >Guardar</button>
         </div>
         </div>
     </form>

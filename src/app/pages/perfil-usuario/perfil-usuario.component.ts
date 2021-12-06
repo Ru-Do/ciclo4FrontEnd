@@ -45,7 +45,7 @@ export class PerfilUsuarioComponent implements OnInit {
       direccion:  [_userService.USER.login.direccion, [Validators.required, Validators.pattern(/^([cC]\/|[cC]alle)\s?([A-Za-z ]{0,})\,?\s?(\d{0,}|s\/n)\,?\s?\d{0,}[ºª]?\s?[a-zA-Z]?$/gm)]],
       password: [_userService.USER.login.contrasena, [Validators.required, Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]]
     })
-  this.id = _userService.USER.login._id;
+  this.id = _userService.USER.login.id;
 
   console.log(this.id)
 

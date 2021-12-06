@@ -24,8 +24,13 @@ export class UserService {
     return this.http.post(this.url + 'login', login);
   }
 
+<<<<<<< HEAD
   modificarUser(id: string, user: User): Observable<any> {
     return this.http.put(this.url + id, user);
+=======
+  editarUser(user: User){
+    //return this.http.put(this.url + _id, user);
+>>>>>>> 6467aad5a974e7ed044ac8d9f397a57829a9ddb2
   }
 
 }
