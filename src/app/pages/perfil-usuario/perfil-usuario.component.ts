@@ -45,30 +45,49 @@ export class PerfilUsuarioComponent implements OnInit {
       direccion:  [_userService.USER.login.direccion, [Validators.required, Validators.pattern(/^([cC]\/|[cC]alle)\s?([A-Za-z ]{0,})\,?\s?(\d{0,}|s\/n)\,?\s?\d{0,}[ºª]?\s?[a-zA-Z]?$/gm)]],
       password: [_userService.USER.login.contrasena, [Validators.required, Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]]
     })
-  this.id = _userService.USER.login._id;
+    this.id = _userService.USER.login._id;
+    
 
   //console.log("este es el Id = "+ this.id)
 
   }
 
+  disableFields() {
+    this.perfilForm.get('tipoUsuario')?.disable();
+    this.perfilForm.get('sector')?.disable();
+    this.perfilForm.get('nombreOrganizacion')?.disable();
+    this.perfilForm.get('primerNombre')?.disable();
+    this.perfilForm.get('segundoNombre')?.disable();
+    this.perfilForm.get('primerApellido')?.disable();
+    this.perfilForm.get('segundoApellido')?.disable();
+    this.perfilForm.get('tipoDocumento')?.disable();
+    this.perfilForm.get('numeroDocumento')?.disable();
+    this.perfilForm.get('email')?.disable();
+    this.perfilForm.get('numeroTelefono1')?.disable();
+    this.perfilForm.get('numeroTelefono2')?.disable();
+    this.perfilForm.get('pais')?.disable();
+    this.perfilForm.get('ciudad')?.disable();
+    this.perfilForm.get('direccion')?.disable();
+    this.perfilForm.get('password')?.disable();
+  }
 
 
   enableFields() {
     console.log("runnn");
     this.enableField = true;
-    this.perfilForm.get('tipoUsuario')?.enable();
+    //this.perfilForm.get('tipoUsuario')?.enable();
     this.perfilForm.get('sector')?.enable();
     this.perfilForm.get('nombreOrganizacion')?.enable();
     this.perfilForm.get('primerNombre')?.enable();
     this.perfilForm.get('segundoNombre')?.enable();
     this.perfilForm.get('primerApellido')?.enable();
     this.perfilForm.get('segundoApellido')?.enable();
-    this.perfilForm.get('tipoDocumento')?.enable();
-    this.perfilForm.get('numeroDocumento')?.enable();
+    //this.perfilForm.get('tipoDocumento')?.enable();
+    //this.perfilForm.get('numeroDocumento')?.enable();
     this.perfilForm.get('email')?.enable();
     this.perfilForm.get('numeroTelefono1')?.enable();
     this.perfilForm.get('numeroTelefono2')?.enable();
-    this.perfilForm.get('pais')?.enable();
+    //this.perfilForm.get('pais')?.enable();
     this.perfilForm.get('ciudad')?.enable();
     this.perfilForm.get('direccion')?.enable();
     this.perfilForm.get('password')?.enable();
@@ -78,6 +97,7 @@ export class PerfilUsuarioComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.disableFields();
   }
 
   editarUser(){
@@ -131,8 +151,8 @@ export class PerfilUsuarioComponent implements OnInit {
           icon: 'success',
           confirmButtonColor: '#005e00',
           confirmButtonText: 'OK',
-        }
-        )
+        })
+        this.disableFields();
       }
     })
   }
