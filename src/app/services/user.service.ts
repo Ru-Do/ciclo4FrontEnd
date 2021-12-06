@@ -24,4 +24,8 @@ export class UserService {
     return this.http.post(this.url + 'login', login);
   }
 
+  modificarUser(id: string, user: User): Observable<any> {
+    return this.http.put(this.url + id, user);
+  }
+
 }

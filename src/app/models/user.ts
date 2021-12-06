@@ -1,22 +1,22 @@
 export class User {
 
-  _id?:Number;
-  ciudad: String;
-  contrasena: String;
-  correoElectronico: String;
-  direccion: String;
-  nombreOrganizacion: String;
-  numeroDocumento: Number;
-  numeroTelefono1: Number;
-  numeroTelefono2: Number;
-  pais: String;
-  primerApellido: String;
-  primerNombre: String;
-  sector: String;
-  segundoApellido: String;
-  segundoNombre: String;
-  tipoDocumento: String;
-  tipoUsuario: String;
+  _id?:number;
+  ciudad: string;
+  contrasena: string;
+  correoElectronico: string;
+  direccion: string;
+  nombreOrganizacion: string;
+  numeroDocumento: number;
+  numeroTelefono1: number;
+  numeroTelefono2: number;
+  pais: string;
+  primerApellido: string;
+  primerNombre: string;
+  sector: string;
+  segundoApellido: string;
+  segundoNombre: string;
+  tipoDocumento: string;
+  tipoUsuario: string;
 
   constructor(ciudad: string,
     contrasena: string,

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { Observable } from 'rxjs';
 
@@ -18,12 +18,16 @@ export class PerfilUsuarioComponent implements OnInit {
   showVoluntario: boolean= true;
   enableField: boolean=false;
   disabledfield: boolean =false;
+  id: string ;
 
   constructor(public formBuilder: FormBuilder,
     public _userService: UserService,
     private toastr: ToastrService,
-    private router: Router) {
-    this.perfilForm = this.formBuilder.group({
+    private router: Router,
+    private aRouter: ActivatedRoute) {
+
+
+      this.perfilForm = this.formBuilder.group({
       tipoUsuario:  [_userService.USER.login.tipoUsuario, Validators.required],
       sector:  [_userService.USER.login.sector, Validators.required],
       nombreOrganizacion:  [_userService.USER.login.nombreOrganizacion, [Validators.required, Validators.minLength(3)]],
@@ -41,8 +45,9 @@ export class PerfilUsuarioComponent implements OnInit {
       direccion:  [_userService.USER.login.direccion, [Validators.required, Validators.pattern(/^([cC]\/|[cC]alle)\s?([A-Za-z ]{0,})\,?\s?(\d{0,}|s\/n)\,?\s?\d{0,}[ºª]?\s?[a-zA-Z]?$/gm)]],
       password: [_userService.USER.login.contrasena, [Validators.required, Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]]
     })
+  this.id = _userService.USER.login._id;
 
-  console.log(this.perfilForm)
+  console.log(this.id)
 
   }
 
@@ -71,7 +76,39 @@ export class PerfilUsuarioComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
+  }
+
+  editarUser(){
+    //console.log(this.perfilForm);
+    //console.log(this.perfilForm.get('tipoUsuario')?.value);
+
+    const USER: User = {
+      ciudad: this.perfilForm.get('ciudad')?.value,
+      contrasena: this.perfilForm.get('contrasena')?.value,
+      correoElectronico: this.perfilForm.get('correoElectronico')?.value,
+      direccion: this.perfilForm.get('direccion')?.value,
+      nombreOrganizacion: this.perfilForm.get('nombreOrganizacion')?.value,
+      numeroDocumento: this.perfilForm.get('numeroDocumento')?.value,
+      numeroTelefono1: this.perfilForm.get('numeroTelefono1')?.value,
+      numeroTelefono2: this.perfilForm.get('numeroTelefono2')?.value,
+      pais: this.perfilForm.get('pais')?.value,
+      primerApellido: this.perfilForm.get('primerApellido')?.value,
+      primerNombre: this.perfilForm.get('primerNombre')?.value,
+      sector: this.perfilForm.get('sector')?.value,
+      segundoApellido:this.perfilForm.get('segundoApellido')?.value,
+      segundoNombre: this.perfilForm.get('segundoNombre')?.value,
+      tipoDocumento: this.perfilForm.get('tipoDocumento')?.value,
+      tipoUsuario: this.perfilForm.get('tipoUsuario')?.value,
+  }
+  console.log(USER);
+    this._userService.modificarUser(this.id, USER).subscribe(data => {
+      this.toastr.success('Cambios Guardados con Exito', 'Modificacion exitosa');
+    }, error => {
+      console.log(error);
+      this.perfilForm.reset();
+    })
   }
 
   pop(){
@@ -86,6 +123,8 @@ export class PerfilUsuarioComponent implements OnInit {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log("este es el id =" + this.id)
+        this.editarUser();
         Swal.fire({
           title: 'Guardado',
           text: 'Cambios Guardados',
