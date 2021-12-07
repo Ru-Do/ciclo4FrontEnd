@@ -4,25 +4,25 @@
             <h2 class="text-center">Formulario para Voluntario</h2>
             <div>
                 <div class="col-md-4 pt-3">
-                    <label for="validationFormCheck2" class="form-label1"><strong>Selecciona tu tipo de donación:</strong></label>
-                    <select id="inputDonacion" class="form-select" formControlName="donacion">
+                    <label class="form-label1"><strong>Selecciona tu tipo de donación:</strong></label>
+                    <select class="form-select" formControlName="tipoDonacion">
                         <option value=""  disabled="disabled">Selecciona...</option>
                         <option>Dona tu Tiempo</option>
                         <option>Dona tu Conocimiento</option>
                     </select>
-                    <div *ngIf="volunteerForm.controls.donacion.touched">
-                        <small class="text-danger" *ngIf="volunteerForm.controls.donacion.errors?.required">
+                    <div *ngIf="volunteerForm.controls.tipoDonacion.touched">
+                        <small class="text-danger" *ngIf="volunteerForm.controls.tipoDonacion.errors?.required">
                             <i class="fas fa-exclamation-circle fa-fw"></i>
                                 Campo requerido
                         </small>
-                    </div>    
+                    </div>
                 </div>
             </div>
 
             <div>
                 <div class="col-md-4 pt-3">
-                    <label for="inputnivelEducativo" class="form-label1"><strong>Selecciona tu nivel educativo:</strong></label>
-                    <select id="inputnivelEducativo" class="form-select" formControlName="nivelEducativo">
+                    <label  class="form-label1"><strong>Selecciona tu nivel educativo:</strong></label>
+                    <select class="form-select" formControlName="nivelEducativo">
                         <option value=""  disabled="disabled">Selecciona...</option>
                         <option>Primaria</option>
                         <option>Secundaria</option>
@@ -40,9 +40,9 @@
 
                 <div class="col-md-12 pt-3">
                     <label for="validationTextarea" class="form-label1"> <strong>Describe tu donación</strong></label>
-                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Redacte su tipo de donación si es conocimiento describa cual es la especialidad que desea donar y si desea donar tiempo describa su disponibilidad para donarlo" formControlName="donaConocimiento" required></textarea>
-                    <div *ngIf="showRequired || volunteerForm.controls.donaConocimiento.touched ">
-                        <small class="text-danger" *ngIf="volunteerForm.controls.donaConocimiento.errors?.required">
+                    <textarea class="form-control is-invalid" id="validationTextarea" formControlName="descripcion" placeholder="Redacte su tipo de donación si es conocimiento describa cual es la especialidad que desea donar y si desea donar tiempo describa su disponibilidad para donarlo" required></textarea>
+                    <div *ngIf="showRequired || volunteerForm.controls.descripcion.touched ">
+                        <small class="text-danger" *ngIf="volunteerForm.controls.descripcion.errors?.required">
                             <i class="fas fa-exclamation-circle fa-fw"></i>
                             Campo requerido
                         </small>
@@ -50,8 +50,9 @@
                 </div>
             </div>
             <div class="col-md-12 pt-5 pb-3 text-center">
-                <a type="submit" class="btn btn-primary btn-volunteerForm mr-2" (click)="showMensage()">Publicar</a>
-                <a class="btn btn-success" routerLink="/filtroPublicaciones">
+                <a type="submit" class="btn btn-success m-2" (click)="pop()">Publicar</a>
+
+                <a class="btn btn-secondary m-2" routerLink="/filtroPublicaciones">
                     <i class="fas fa-pen-alt fa-fw"></i>
                     Volver
                     </a>

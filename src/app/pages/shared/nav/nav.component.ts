@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,23 +11,37 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  userType: String = 'Empresa';
   userData: any;
   listUsers: User[] = [];
+  idPublicacion: string | null;
+
+
 
   constructor(
     private router: Router,
-    public _userService: UserService
-  ) {  }
+    public _userService: UserService,
+    private aRouter: ActivatedRoute
+  ) {
+    this.idPublicacion = aRouter.snapshot.paramMap.get('id');
+    console.log("id de la publicacion = " + this.idPublicacion)
+  }
 
   ngOnInit(): void {
-    this.obtenerUsers();
-
+    console.log("id user = " + this.idPublicacion)
   }
 
 
-  obtenerUsers () {
-
+  borrarUser () {
+    delete this._userService.USER;
+    if(window.location.href === 'http://localhost:4200/home'){
+      window.location.reload();
+    }else{
+      this.router.navigate(['/home']);
+    }
   }
 
+  reInicio(){
+    this.borrarUser();
+
+  }
 }

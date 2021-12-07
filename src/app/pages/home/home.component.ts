@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
+import { Publicacion } from 'src/app/models/publicacion';
+import { PublicacionService } from 'src/app/services/publicacion.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,31 +13,34 @@ import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 })
 export class HomeComponent implements OnInit {
 
-  filtroForm: FormGroup;
-  user: any;
-  publicaciones!: any[];
-
+  listPublicaciones: Publicacion[] = [];
   constructor(
-    private formBuilder: FormBuilder
-  ) {
-    this.filtroForm = this.formBuilder.group({
-      sector:  ['', Validators.required],
-      ciudad:  ['', Validators.required],
-      fechaApertura:  ['', Validators.required],
-      fechaCierre:  ['', Validators.required],
-      nombreOrganizacion:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]]
-    });
-  }
+    private formBuilder: FormBuilder,
+    public _userService: UserService,
+    public _publicacionService: PublicacionService,
+    private aRouter: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.obtenerPublicaciones();
   }
 
-  mostrar():void{
-    console.log("holaa")
-    var ancla = document.getElementsByClassName("filtro");
-    for (var i = 0; i < ancla.length; i++){
-      ancla[i].classList.toggle("desaparece");
-    }
-  }
+  obtenerPublicaciones () {
+    this._publicacionService.getPublicaciones().subscribe(data => {
+      console.log("usuario" + this._userService.USER.login._id)
+      let index=0;
+      for (let publicacion of data){
 
+          if(publicacion.idDueno !== this._userService.USER.login._id){
+            console.log(publicacion);
+            this.listPublicaciones[index] = publicacion;
+            index+=1;
+          }
+
+        }
+      console.log(this.listPublicaciones);
+    }, error => {
+      console.log(error);
+    })
+  }
 }

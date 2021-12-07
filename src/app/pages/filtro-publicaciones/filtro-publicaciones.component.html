@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="_userService.USER.login.tipoUsuario==='Empresa' || _userService.USER.login.tipoUsuario==='Fundación'">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
@@ -29,7 +29,12 @@
                 <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
                   {{publicacion.sector}}</td>
                 <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
-                  <i  [routerLink]="['/empresasEditar', publicacion._id]" class="fas fa-edit text-primary"></i>
+                  <span *ngIf="_userService.USER.login.tipoUsuario=== 'Empresa'">
+                    <i  [routerLink]="['/empresasEditar', publicacion._id]" class="fas fa-edit text-primary"></i>
+                  </span>
+                  <span *ngIf="_userService.USER.login.tipoUsuario=== 'Fundación'">
+                    <i  [routerLink]="['/fundacionesEditar', publicacion._id]" class="fas fa-edit text-primary"></i>
+                  </span>
                   <i  (click)="pop(publicacion._id)" class="fas fa-trash-alt text-danger"></i>
                 </td>
               </tr>
@@ -37,9 +42,6 @@
           </table>
           <div *ngIf="_userService.USER.login.tipoUsuario==='Empresa'">
             <button class="btn btn-primary float-center" routerLink="/empresas">NUEVA DONACION</button>
-          </div>
-          <div *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
-            <button class="btn btn-primary float-center" routerLink="/volunteerForm">NUEVA DONACION</button>
           </div>
           <div *ngIf="_userService.USER.login.tipoUsuario==='Fundación'">
             <button class="btn btn-primary float-center" routerLink="/fundaciones">NUEVA SOLICITUD</button>
@@ -51,3 +53,47 @@
   </div>
 </div>
 
+<div class="container mt-5" *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo"><strong>MIS PUBLICACIONES</strong></span>
+
+          <table *ngIf="listPublicaciones.length > 0" class="table table-striped mt-3">
+            <thead>
+              <tr>
+                <th scope="col">Tipo Donacion</th>
+                <th scope="col">Nivel Academico</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col"></th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor='let publicacion of listPublicaciones' >
+
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.tipoDona}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.nivelAcademico}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.descripcion}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  <span>
+                    <i  [routerLink]="['/volunteerFormEditar', publicacion._id]" class="fas fa-edit text-primary"></i>
+                  </span>
+                  <i  (click)="pop(publicacion._id)" class="fas fa-trash-alt text-danger"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <button class="btn btn-primary float-center" routerLink="/volunteerForm">NUEVA DONACION</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

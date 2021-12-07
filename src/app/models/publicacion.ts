@@ -9,6 +9,7 @@ export class Publicacion {
   nombreDueno:string;
   tipoDona: string;
   nivelAcademico: string;
+  //fechaCreacion: Date;
 
   constructor(
     sector: string,
@@ -19,6 +20,7 @@ export class Publicacion {
     nombreDueno: string,
     tipoDona: string,
     nivelAcademico: string,
+    //fechaCreacion: Date,
       ){
         this.sector = sector,
         this.fechaInicio = fechaInicio,
@@ -28,6 +30,7 @@ export class Publicacion {
         this.nombreDueno = nombreDueno,
         this.tipoDona = tipoDona,
         this.nivelAcademico = nivelAcademico
+        //this.fechaCreacion =  fechaCreacion
   }
 
 }

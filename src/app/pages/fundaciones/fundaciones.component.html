@@ -5,7 +5,7 @@
           <h1>Formulario de Solicitud de Donacion</h1>
           <hr>
             <div class="col-md-7">
-           <label for="sector" class="form-label" >Sector de Solicitud de Donacion</label>
+            <label for="sector" class="form-label" >Sector de Solicitud de Donacion</label>
             <select id="sector" class="form-select" formControlName="sector">
             <option value="" >Selecciona...</option>
             <option>Alimentos</option>
@@ -61,8 +61,8 @@
 
         </div>
         <div class="col-md-12 pt-3 pb-1 text-center">
-          <button type="submit"  class="btn btn-fundaciones" role="button">PUBLICAR</button>
-          <a class="btn btn-success" routerLink="/filtroPublicaciones">
+          <button type="submit"  class="btn btn-success m-2" role="button" (click)="pop()">PUBLICAR</button>
+          <a class="btn btn-secondary m-2" routerLink="/filtroPublicaciones">
             <i class="fas fa-pen-alt fa-fw"></i>
             Volver
           </a>
@@ -73,4 +73,4 @@
       </div>
     </form>
 
-   </div>
+</div>

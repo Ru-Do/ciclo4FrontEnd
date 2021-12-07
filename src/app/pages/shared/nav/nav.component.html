@@ -51,7 +51,7 @@
               </a>
             </li >
             <li>
-              <a type="button" class="dropdown-item">
+              <a type="button" class="dropdown-item" routerLink="/home" (click)="borrarUser()" >
                 <i class="fas fa-sign-out-alt fa-fw"></i>
                 Cerrar Sesión
               </a>
@@ -59,7 +59,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <i class="fas fa-home fa-fw"></i>
             Inicio
           </a>

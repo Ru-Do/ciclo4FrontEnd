@@ -32,11 +32,11 @@ export class RegistroComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       tipoUsuario:  ['', Validators.required],
       sector:  ['',Validators.required],
-      nombreOrganizacion:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
-      primerNombre:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
-      segundoNombre:  ['', Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)],
-      primerApellido:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
-      segundoApellido:  ['', [Validators.required, Validators.minLength(3),Validators.pattern(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/)]],
+      nombreOrganizacion:  ['', [Validators.required, Validators.minLength(3)]],
+      primerNombre:  ['', [Validators.required, Validators.minLength(3)]],
+      segundoNombre:  ['', Validators.minLength(3)],
+      primerApellido:  ['', [Validators.required, Validators.minLength(3)]],
+      segundoApellido:  ['', [Validators.required, Validators.minLength(3)]],
       tipoDocumento:  ['', Validators.required],
       numeroDocumento:  ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^[0-9]+$/)]],
       correoElectronico:  ['', [Validators.required,Validators.pattern(/.+\@.+\..+/)]],
@@ -110,7 +110,7 @@ export class RegistroComponent implements OnInit {
     console.log(USER);
     this._userService.guardarUser(USER).subscribe(data => {
       this.toastr.success('Usuario Registrado con Exito', 'Registo exitos');
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
     }, error => {
       console.log(error);
       this.registerForm.reset();

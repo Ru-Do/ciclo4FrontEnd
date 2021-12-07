@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     this._userService.obtenerUser(user).subscribe(data => {
       this.toastr.success('Se Inicio Sesion', 'Login Exitoso');
       this._userService.USER = data;
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
       console.log(this._userService.USER);
     }, error => {
       console.log(error);
