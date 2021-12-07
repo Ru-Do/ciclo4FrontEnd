@@ -11,9 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VolunteerFormComponent implements OnInit {
   volunteerForm: FormGroup;
-  mostrarElemento1= false;
-  mostrarElemento2= false;
-  mostrarElemento3= false;
   mensaje= false;
   showRequired:boolean =false;
   user: any;
@@ -22,8 +19,7 @@ export class VolunteerFormComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService) {
     this.volunteerForm = this.formBuilder.group({
-      donaTiempo:  ['', Validators.required],
-      donaConocimiento:  ['', Validators.required],
+      donacion:  ['', Validators.required],
       nivelEducativo:['', Validators.required]
     });
   }
@@ -33,47 +29,16 @@ export class VolunteerFormComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('userData')!);
   }
 
-  activarElemento1(): void {
-    this.mostrarElemento1= true;
-    this.mostrarElemento2= false;
-  }
-
-  activarElemento2(): void {
-    this.mostrarElemento2= true;
-    this.mostrarElemento1= false;
-  }
-
-
-  activarElemento3(): void {
-    this.mostrarElemento2= true;
-    this.mostrarElemento1= false;
-    this.mostrarElemento3= true;
-  }
-
 
   showMensage(){
-  if(this.mostrarElemento1== true){
-      if (this.volunteerForm.controls.donaTiempo.value == "" ) {
-        this.showRequired = true;
-        console.log("running");
-        } else {
-        this.showRequired = false;
-        Swal.fire('¡Tu publicación ha sido generada!');
-      }
-    }
 
-    if(this.mostrarElemento2== true){
-      if (this.volunteerForm.controls.donaConocimiento.value == "" ) {
+      if (this.volunteerForm.controls.donacion.value == "" ) {
         this.showRequired = true;
         console.log("running");
       } else {
         this.showRequired = false;
         Swal.fire('¡Tu publicación ha sido generada!');
       }
-
-    }
-
-    return false;
 
   }
 
