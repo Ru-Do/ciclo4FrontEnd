@@ -2,35 +2,27 @@
     <form class="was-validated">
         <div class="row p-3" [formGroup]="volunteerForm" >
             <h2 class="text-center">Formulario para Voluntario</h2>
-            <div class="col-md-12">
-                <label for="validationFormCheck2" class="form-label1"><strong>Selecciona tu tipo de donación:</strong></label>
-            </div>
-            <div class="form-check col-md-12">
-                <input type="radio" class="form-check-input" id="validationFormCheck2" name="radio-stacked" (click)="activarElemento1()" required>
-                <label class="form-label" for="validationFormCheck2">Dona tu tiempo</label>
-            </div>
-            <div class="form-check col-md-12">
-                <input type="radio" class="form-check-input" id="validationFormCheck3" name="radio-stacked" (click)="activarElemento2()" required>
-                <label class="form-label" for="validationFormCheck3">Dona tu conocimiento</label>
-                <div class="invalid-feedback">
-                    <i class="fas fa-exclamation-circle fa-fw"></i>
-                    Selecciona una opción
+            <div>
+                <div class="col-md-4 pt-3">
+                    <label for="validationFormCheck2" class="form-label1"><strong>Selecciona tu tipo de donación:</strong></label>
+                    <select id="inputDonacion" class="form-select" formControlName="donacion">
+                        <option value=""  disabled="disabled">Selecciona...</option>
+                        <option>Dona tu Tiempo</option>
+                        <option>Dona tu Conocimiento</option>
+                    </select>
+                    <div *ngIf="volunteerForm.controls.donacion.touched">
+                        <small class="text-danger" *ngIf="volunteerForm.controls.donacion.errors?.required">
+                            <i class="fas fa-exclamation-circle fa-fw"></i>
+                                Campo requerido
+                        </small>
+                    </div>    
                 </div>
             </div>
-            <div class="col-md-12" *ngIf="mostrarElemento1">
-                <label for="validationTextarea" class="form-label1"><strong>Describe tu disponibilidad</strong></label>
-                <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Por favor redacte su disponibilidad como voluntario" formControlName="donaTiempo" required></textarea>
-                <div *ngIf="showRequired || volunteerForm.controls.donaTiempo.touched">
-                    <small class="text-danger" *ngIf="volunteerForm.controls.donaTiempo.errors?.required && mostrarElemento1">
-                        <i class="fas fa-exclamation-circle fa-fw"></i>
-                        Campo requerido
-                    </small>
-                </div>
-            </div>
-            <div *ngIf="!mostrarElemento1 && mostrarElemento2">
-                <div class="col-md-4">
+
+            <div>
+                <div class="col-md-4 pt-3">
                     <label for="inputnivelEducativo" class="form-label1"><strong>Selecciona tu nivel educativo:</strong></label>
-                    <select id="inputnivelEducativo" class="form-select" formControlName="nivelEducativo" (click)="activarElemento3()">
+                    <select id="inputnivelEducativo" class="form-select" formControlName="nivelEducativo">
                         <option value=""  disabled="disabled">Selecciona...</option>
                         <option>Primaria</option>
                         <option>Secundaria</option>
@@ -46,9 +38,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 pt-3" *ngIf = "mostrarElemento3">
-                    <label for="validationTextarea" class="form-label1"> <strong>Describe tu conocimiento y disponibilidad</strong></label>
-                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Redacte su tipo de conocimiento y disponibilidad para donarlo" formControlName="donaConocimiento" required></textarea>
+                <div class="col-md-12 pt-3">
+                    <label for="validationTextarea" class="form-label1"> <strong>Describe tu donación</strong></label>
+                    <textarea class="form-control is-invalid" id="validationTextarea" placeholder="Redacte su tipo de donación si es conocimiento describa cual es la especialidad que desea donar y si desea donar tiempo describa su disponibilidad para donarlo" formControlName="donaConocimiento" required></textarea>
                     <div *ngIf="showRequired || volunteerForm.controls.donaConocimiento.touched ">
                         <small class="text-danger" *ngIf="volunteerForm.controls.donaConocimiento.errors?.required">
                             <i class="fas fa-exclamation-circle fa-fw"></i>
