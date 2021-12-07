@@ -3,12 +3,13 @@
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
         <div class="card-body text-center">
-          <span class="titulo">LISTADO DE PUBLICACIONES</span>
-          <button class="btn btn-success float-end" routerLink="/empresas">NUEVO</button>
+          <span class="titulo"><strong>MIS PUBLICACIONES</strong></span>
+
           <table *ngIf="listPublicaciones.length > 0" class="table table-striped mt-3">
             <thead>
               <tr>
-                <th scope="col">Responsable</th>
+                <th scope="col">Inicio</th>
+                <th scope="col">Fin</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Sector</th>
                 <th scope="col"></th>
@@ -17,17 +18,33 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor='let publicacion of listPublicaciones'>
-                <td>{{publicacion.idDueno}}</td>
-                <td>2</td>
-                <td>3</td>
-                <td>
-                  <i  class="fas fa-edit text-primary"></i>
-                  <i  class="fas fa-trash-alt text-danger"></i>
+              <tr *ngFor='let publicacion of listPublicaciones' >
+
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.fechaInicio}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.fechaFin}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.descripcion}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  {{publicacion.sector}}</td>
+                <td *ngIf="_userService.USER.login._id === publicacion.idDueno">
+                  <i  [routerLink]="['/empresasEditar', publicacion._id]" class="fas fa-edit text-primary"></i>
+                  <i  (click)="pop(publicacion._id)" class="fas fa-trash-alt text-danger"></i>
                 </td>
               </tr>
             </tbody>
           </table>
+          <div *ngIf="_userService.USER.login.tipoUsuario==='Empresa'">
+            <button class="btn btn-primary float-center" routerLink="/empresas">NUEVA DONACION</button>
+          </div>
+          <div *ngIf="_userService.USER.login.tipoUsuario==='Voluntario'">
+            <button class="btn btn-primary float-center" routerLink="/volunteerForm">NUEVA DONACION</button>
+          </div>
+          <div *ngIf="_userService.USER.login.tipoUsuario==='Fundación'">
+            <button class="btn btn-primary float-center" routerLink="/fundaciones">NUEVA SOLICITUD</button>
+          </div>
+
         </div>
       </div>
     </div>

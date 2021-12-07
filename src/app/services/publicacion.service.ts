@@ -20,8 +20,8 @@ export class PublicacionService {
     return this.http.post(this.url, publicacion);
   }
 
-  obtenerPublicacion(id:string, publicacion: any) {
-    return this.http.post(this.url + id, publicacion);
+  obtenerPublicacion(id:string): Observable<any> {
+    return this.http.get(this.url + id);
   }
 
   modificarPublicacion(id: string, publicacion: Publicacion): Observable<any> {

@@ -16,7 +16,7 @@ import{ User } from 'src/app/models/user';
 export class EmpresasComponent implements OnInit {
   empresasForm: FormGroup;
   showRequiredPublica:boolean =false;
-  idPublicacion: string | null;
+  idPublicacion: string | null =null;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -32,12 +32,12 @@ export class EmpresasComponent implements OnInit {
       publica:  ['', Validators.required]
 
     });
-    this.idPublicacion = aRouter.snapshot.paramMap.get('idPublicacion');
+    this.idPublicacion = aRouter.snapshot.paramMap.get('id');
     console.log("id de la publicacion = " + this.idPublicacion)
   }
 
   ngOnInit(): void {
-
+    this.editarPublicaciones();
   }
 
   agregarPublicacion(){
@@ -49,6 +49,7 @@ export class EmpresasComponent implements OnInit {
       fechaFin: this.empresasForm.get('fechaCierre')?.value,
       descripcion: this.empresasForm.get('publica')?.value,
       idDueno: this._userService.USER.login._id,
+      nombreDueno: this._userService.USER.login.nombreOrganizacion,
       tipoDona: "",
       nivelAcademico: "",
     }
@@ -57,7 +58,7 @@ export class EmpresasComponent implements OnInit {
       //editando empresas
       this._publicacionService.modificarPublicacion(this.idPublicacion, PUBLICACION).subscribe(data =>{
         this.toastr.info('Publicacion modificada exitosamente', 'Publicacion modificada');
-        this.router.navigate(['/']);
+        this.router.navigate(['/filtroPublicaciones']);
         //this._publicacionService.PUBLICACION = data;
       })
     }else{
@@ -66,7 +67,7 @@ export class EmpresasComponent implements OnInit {
 
       this._publicacionService.guardarPublicacion(PUBLICACION).subscribe(data => {
         this.toastr.success('Publicacion hecha exitosamente', 'Publicacion registrada');
-        this.router.navigate(['/']);
+        this.router.navigate(['/filtroPublicaciones']);
       },error =>{
         console.log(error);
         this.empresasForm.reset();
@@ -98,6 +99,20 @@ export class EmpresasComponent implements OnInit {
         )
       }
     })
+  }
+
+  editarPublicaciones(){
+
+    if(this.idPublicacion !== null) {
+      this._publicacionService.obtenerPublicacion(this.idPublicacion).subscribe(data =>{
+        this.empresasForm.setValue({
+          sector: data.sector,
+          fechaApertura : data.fechaInicio,
+          fechaCierre: data.fechaFin,
+          publica: data.descripcion,
+        })
+      })
+    }
   }
 
 

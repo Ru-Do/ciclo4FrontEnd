@@ -46,7 +46,7 @@ export class FiltroPublicacionesComponent implements OnInit {
     })
   }
 
-  pop(){
+  pop(id: any){
     Swal.fire({
       title: '¿Esta Seguro?',
       text: "No podra recuperar los datos",
@@ -64,8 +64,8 @@ export class FiltroPublicacionesComponent implements OnInit {
           icon: 'success',
           confirmButtonColor: '#005e00',
           confirmButtonText: 'OK',
-        }
-        )
+        })
+        this.eliminarPublicacion(id);
       }
     })
 

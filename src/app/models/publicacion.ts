@@ -2,19 +2,21 @@ export class Publicacion {
 
   _id?: number;
   sector: string;
-  fechaInicio: Date;
-  fechaFin: Date;
+  fechaInicio: string;
+  fechaFin: string;
   descripcion: string;
   idDueno: string;
+  nombreDueno:string;
   tipoDona: string;
   nivelAcademico: string;
 
   constructor(
     sector: string,
-    fechaInicio: Date,
-    fechaFin: Date,
+    fechaInicio: string,
+    fechaFin: string,
     descripcion: string,
     idDueno: string,
+    nombreDueno: string,
     tipoDona: string,
     nivelAcademico: string,
       ){
@@ -23,6 +25,7 @@ export class Publicacion {
         this.fechaFin = fechaFin,
         this.descripcion = descripcion,
         this.idDueno = idDueno,
+        this.nombreDueno = nombreDueno,
         this.tipoDona = tipoDona,
         this.nivelAcademico = nivelAcademico
   }
